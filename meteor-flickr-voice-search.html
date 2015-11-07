@@ -1,0 +1,21 @@
+<head>
+  <title>meteor-flickr-voice-search</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  {{#each photos}}
+    {{> FlickrImage}}
+  {{else}}
+    Say "show me (search term)" to search for images.
+  {{/each}}
+</template>
+
+<template name="FlickrImage">
+  <img src="https://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}.jpg" class="result" />
+</template>
