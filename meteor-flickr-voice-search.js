@@ -1,5 +1,3 @@
-GlobalAssets = Assets;
-
 if (Meteor.isClient) {
   Template.hello.onRendered(() => {
     let commands = {
@@ -29,6 +27,8 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+  GlobalAssets = Assets;
+
   ApiSettings = {
     apiUrl: 'https://api.flickr.com/services/rest',
     apiKey: process.env.FLICKR_API_KEY,
