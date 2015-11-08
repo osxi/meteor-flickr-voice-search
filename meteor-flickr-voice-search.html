@@ -3,12 +3,20 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>{{term}}</h1>
 
-  {{> hello}}
+  {{> App}}
 </body>
 
-<template name="hello">
+<template name="App">
+  {{#if searching}}
+    Loading...
+  {{else}}
+    {{> Photos}}
+  {{/if}}
+</template>
+
+<template name="Photos">
   {{#each photos}}
     {{> FlickrImage}}
   {{else}}

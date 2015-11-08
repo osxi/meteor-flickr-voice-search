@@ -1,12 +1,28 @@
 if (Meteor.isClient) {
-  Template.hello.onRendered(() => {
+  Template.body.helpers({
+    term() {
+      return Session.get('term') || 'meteor-flicker-voice-search';
+    }
+  });
+
+  Template.App.helpers({
+    searching() {
+      return !!Session.get('searching') && !!!Session.get('photos');
+    }
+  });
+
+  Template.Photos.onRendered(() => {
     let commands = {
       'show me *term'(term) {
-        console.log('You searched for: ', term);
+        Session.set({
+          term: term,
+          photos: null,
+          searching: true
+        });
 
-        Meteor.callPromise('flickrTagSearch', term).then(res => {
-          Session.set('photos', res.data.photos.photo);
-        }).catch(err => console.log('something went wrong:', err));
+        Meteor.callPromise('flickrTagSearch', term)
+          .then(res => Session.set('photos', res.data.photos.photo))
+          .catch(err => console.log('something went wrong:', err));
       }
     };
 
@@ -15,13 +31,9 @@ if (Meteor.isClient) {
     annyang.start();
   });
 
-  Template.hello.helpers({
+  Template.Photos.helpers({
     photos() {
-      if (!!!Session.get('photos')) {
-        return [];
-      }
-
-      return Session.get('photos');
+      return Session.get('photos') || [];
     }
   });
 }
@@ -37,7 +49,7 @@ if (Meteor.isServer) {
 
   Meteor.methods({
     flickrTagSearch(tag) {
-      let { apiUrl, apiKey, apiSig, method } = ApiSettings;
+      let { apiUrl, apiKey, method } = ApiSettings;
 
       let url = `${apiUrl}/?method=${method}&api_key=${apiKey}&tags=${tag}` +
                 `&format=json&nojsoncallback=1`;
