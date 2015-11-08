@@ -1,0 +1,5 @@
+<template name="PhotoSlides">
+  {{#each photos}}
+    <div class="swiper-slide" style="background-image:url(https://farm{{farm}}.staticflickr.com/{{server}}/{{id}}_{{secret}}.jpg)"></div>
+  {{/each}}
+</template>

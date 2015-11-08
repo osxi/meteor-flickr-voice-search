@@ -26,6 +26,7 @@ ecmascript-runtime@0.2.6
 ejson@1.0.7
 es5-shim@4.1.14
 fastclick@1.0.7
+fourseven:scss@3.4.1
 geojson-utils@1.0.4
 hot-code-push@1.0.0
 html-tools@1.0.5
@@ -34,9 +35,11 @@ http@1.1.1
 id-map@1.0.4
 insecure@1.0.4
 jquery@1.11.4
+lacosta:swiper@0.0.1
 launch-screen@1.0.4
 livedata@1.0.15
 logging@1.0.8
+materialize:materialize@0.97.0
 meteor@1.1.10
 meteor-base@1.0.1
 minifiers@1.1.7

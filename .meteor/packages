@@ -22,3 +22,6 @@ osxi:annyang
 http
 deanius:promise
 poetic:env-load
+fourseven:scss
+lacosta:swiper
+materialize:materialize@=0.97.0
